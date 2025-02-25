@@ -1,8 +1,8 @@
 /**
  * 远程接口调用代理类
  */
-// var SERVICE_ADDRESS = "http://47.107.248.50:9527";
-var SERVICE_ADDRESS = "http://localhost:9527";
+var SERVICE_ADDRESS = "http://47.107.248.50:9527";
+// var SERVICE_ADDRESS = "http://localhost:9527";
 
 /**
  * 处理rest请求结果

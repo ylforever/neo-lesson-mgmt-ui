@@ -21,8 +21,8 @@ function loadStudentOfSelectedLesson(){
     
     // 2、查询课程包含的学员更新表格
     var pageVo = {
-        "amount": 10,
-        "pageNo": 1
+        "pageNo": 1,
+        "amount": 50
       }
     
     queryStudentByPageProxy(initStudentTable, pageVo, lessonCode);
@@ -37,6 +37,7 @@ function loadStudentOfSelectedLesson(){
 function initStudentTable(result){
     var studentHtml = "";
     studentHtml += "<tr> "
+                    + "<th class='operator'>序号</th>"
                     + "<th class='operator'>操作</th>"
                     + "<th class='name' scope='col'>姓名</th>"
                     + "<th class='lesson'>课程</th>"    
@@ -47,6 +48,7 @@ function initStudentTable(result){
     for(var i = 0; i < studentList.length; ++i){
         const student = studentList[i];
         studentHtml += '<tr id="' + student.studentCode +'">'
+                        + '<td>' + (i+1) + '</td>'
                         + '<td class="operator clearfix">'
                         + '<button class="operator-btn float-left" onclick="deleteStudent(this)">删除</button>'
                         +' <button class="operator-btn float-left" onclick="increaseLessonNum(this)">加课时</button>'
