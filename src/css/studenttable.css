@@ -1,0 +1,131 @@
+@import "common.css";
+
+/*工具栏样式设置开始*/
+.container .student-content .tool-btn{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.container .student-content .tool-btn .lesson-choose .lesson-title{
+    color: #aaa;
+}
+
+.container .student-content .tool-btn .lesson-choose{
+    margin-left: 20px;
+}
+
+.container .student-content .tool-btn .add-lesson{
+    margin-left: 10px;
+    margin-top: 4px;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+}
+
+.container .student-content .tool-btn .add-student{
+    margin-left: 10px;
+    margin-top: 4px;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+}
+
+/*工具栏样式设置结束*/
+
+/*表格样式设置开始*/
+.container .student-content .student-table table tr{
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.container .student-content .student-table table tr th{
+    background-color: #EFEFEF;
+}
+
+.container .student-content .student-table .operator .operator-btn{
+    margin-right: 5px;
+}
+
+.container .student-content .student-table .lesson{
+    width: 200px;
+    text-align: center;
+}
+
+.container .student-content .student-table .name{
+    width: 200px;
+    text-align: center;
+}
+
+.container .student-content .student-table .lesson-num{
+    width: 100px;
+    text-align: center;
+}
+
+.container .student-content .student-table .email {
+    width: 500px;
+    text-align: center;
+}
+
+.container .student-content .student-table table tr:nth-child(odd) {
+    background-color: #efefef;
+}
+
+.container .student-content .student-table table tr button{
+    background-color: #19777f;
+    color: white;
+}
+
+/*表格样式设置结束*/
+
+/*分页样式设置开始*/
+.container .student-content .page-tool .page-num-list .page-num-item{
+    margin: 0 5px;
+}
+
+.container .student-content .page-tool .page-num-list .selected{
+    color: rgb(0, 100, 200);
+}
+
+.container .student-content .page-tool button{
+    background-color: #aaa;
+    border-radius: 3px;
+}
+
+.container .student-content .page-tool .page-num-sel input{
+    border: 1px solid;
+    text-align: center;
+}
+
+
+.container .student-content .page-tool .page-item{
+    margin: 20px 5px;
+}
+
+/*分页样式设置结束*/
+
+/*添加学员对话框样式设置开始*/
+.container .add-student-dialog{
+    width: 300px;
+    height: 200px;
+    border: 1px solid;
+    background-color: #EFEFEF;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+    /* translate: -20% -20%; */
+}
+/*添加学员对话框样式设置结束*/
+
+/*添加课时对话框样式设置开始*/
+.container .increase-less-num-dialog{
+    width: 300px;
+    height: 115px;
+    border: 1px solid;
+    background-color: #EFEFEF;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+}
+
+/*添加课时对话框样式设置结束*/

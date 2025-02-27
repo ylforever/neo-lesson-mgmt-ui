@@ -1,0 +1,46 @@
+a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 16px;
+}
+
+li {
+    list-style: none;
+}
+
+ol {
+    list-style: none;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+input, textarea, button, select {
+    border: none;
+    outline: none;
+    outline-offset: 0;
+}
+
+input:focus, textarea:focus, button:focus, select:focus {
+    outline: none;
+    outline-offset: 0;
+}
+
+body{
+    margin: 0;
+}
+
+button{
+    border: none;
+    outline: none;
+    outline-offset: 0;
+    background: transparent;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课时管理工具</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/lessonlist.css">
+    <link rel="stylesheet" href="./css/studenttable.css">
+
+    <script src="./script/lessonmgmtproxy.js"></script>
+    <script src="./script/studentcontent.js"></script>
+    <script src="./script/lessonlist.js"></script>
+</head>
+<body>
+    <div class="header clearfix">
+        <div class="float-left">
+            <h1 class="title">课时管理工具</h1>
+        </div>
+        <div class="float-right">
+            <button >登录</button>
+        </div>
+        <div class="float-right">
+            <button>注销</button>
+        </div>
+    </div>
+    <div class="container clearfix">
+        <!--左侧课程列表-->
+        <div class="lesson-list-nav float-left">
+            <ul id="lesson-list-id" class="lesson-list"></ul>
+        </div>
+
+        <!--右侧学员列表-->
+        <div class="student-content">
+            <div class="tool-btn clearfix">
+                <div class="add-lesson float-left">
+                    <button class="lesson-mgmt-button" onclick="showAddLessonDialog()">添加课程</button>
+                </div>
+                <div class="add-student float-left">
+                    <button class="lesson-mgmt-button" onclick="showAddStudentDialog()">添加学员</button>
+                </div>
+            </div>
+            <div class="student-table">
+                <table id="student-table-id">
+                </table>
+            </div>
+            <div class="page-tool clearfix hidden">
+                <div class="page-item left-arrow float-left">
+                    <i class="iconfont icon-jiantou-copy"></i>
+                </div>
+                <div class="page-item page-num-list float-left">
+                    <li class="clearfix">
+                        <ul class="page-num-item float-left">1</ul>
+                        <ul class="page-num-item float-left selected">2</ul>
+                        <ul class="page-num-item float-left">3</ul>
+                    </li>
+                </div>
+                <div class="page-item right-arrow float-left">
+                    <i class="iconfont icon-youjiantou"></i>
+                </div>
+                <div class="page-item float-left">
+                    <label>跳转</label>
+                </div>
+                <div class="page-item page-num-sel float-left">
+                    <input type="number" min="1" max="10" step="1" value="2">
+                </div>
+                <div class="page-item float-left">
+                    <button>确定</button>
+                </div>
+                <div class="page-item total-num float-left">
+                    <label>共26条</label>
+                </div>
+            </div>
+        </div>
+
+        <!--新增课程对话框-->
+        <div id="add-lesson-dialog-id" class="add-lesson-dialog hidden">
+            <div class="dialog-title">
+                添加课程
+            </div>
+            <div class="dialog-item clearfix">
+                <div class="atttribute-name float-left">课程名称:</div>
+                <input id="add-lesson-dialog-name-id" class="float-left" type="text">
+            </div>
+            <div class="dialog-item clearfix">
+                <button class="lesson-mgmt-button float-right" onclick="cancelAddLesson()">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmAddLesson()">确定</button>
+            </div>
+        </div>
+
+        <!--新增学员对话框-->
+        <div id="add-student-dialog-id" class="add-student-dialog hidden">
+            <div class="dialog-title">
+                添加学员
+            </div>
+            <div class="dialog-item clearfix">
+                <div class="atttribute-name float-left">姓名:</div>
+                <input id="add-student-dialog-name-id" class="float-left" type="text">
+            </div>
+            <div class="dialog-item clearfix">
+                <div class="atttribute-name float-left">课时:</div>
+                <input id="add-student-dialog-surplus-lesson-num-id" class="float-left" type="number">
+            </div>
+            <div class="dialog-item clearfix">
+                <div class="atttribute-name float-left">Email:</div>
+                <input id="add-student-dialog-email-id" class="float-left" type="email">
+            </div>
+            <div class="dialog-item clearfix">
+                <button class="lesson-mgmt-button float-right" onclick="cancelAddStudent()">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmAddStudent()">确定</button>
+            </div>
+        </div>
+
+        <!--增加课时对话框-->
+        <div id ="increase-less-num-dialog-id" class="increase-less-num-dialog hidden">
+            <div class="dialog-title">
+                增加课时
+            </div>
+            <div class="dialog-item clearfix">
+                <div class="atttribute-name float-left">加课数量:</div>
+                <input id="increase-less-num-dialog-lesson-num-id" class="float-left" type="number">
+            </div>
+            <div class="dialog-item clearfix">
+                <button class="lesson-mgmt-button float-right" onclick="cancelIncreaseLessNum(this)">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmIncreaseLessNum(this)">确定</button>
+            </div>
+        </div>
+
+        <!--扣减课时对话框-->
+        <div id ="decrease-less-num-dialog-id" class="increase-less-num-dialog hidden">
+            <div class="dialog-title">
+                扣减课时
+            </div>
+            <div class="dialog-item clearfix">
+                <div class="atttribute-name float-left">扣课数量:</div>
+                <input id="decrease-less-num-dialog-lesson-num-id" class="float-left" type="number">
+            </div>
+            <div class="dialog-item clearfix">
+                <button class="lesson-mgmt-button float-right" onclick="cancelDecreaseLessNum(this)">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmDecreaseLessNum(this)">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        loadLessonList(); 
+        loadStudentOfSelectedLesson();
+    </script>
+</body>
+</html>
