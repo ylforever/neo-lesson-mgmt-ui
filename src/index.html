@@ -10,19 +10,24 @@
     <link rel="stylesheet" href="./css/studenttable.css">
 
     <script src="./script/lessonmgmtproxy.js"></script>
+    <script src="./script/login.js"></script>
     <script src="./script/studentcontent.js"></script>
     <script src="./script/lessonlist.js"></script>
 </head>
 <body>
+    <script>
+        if(!localStorage.getItem("jwt-token")){
+            alert("未登录");
+            window.location.href = "./login.html";
+        }
+    </script>
+
     <div class="header clearfix">
         <div class="float-left">
             <h1 class="title">课时管理工具</h1>
         </div>
         <div class="float-right">
-            <button >登录</button>
-        </div>
-        <div class="float-right">
-            <button>注销</button>
+            <button onclick="logout()">注销</button>
         </div>
     </div>
     <div class="container clearfix">

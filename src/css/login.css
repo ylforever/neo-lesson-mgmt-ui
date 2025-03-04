@@ -1,0 +1,72 @@
+@import "common.css";
+
+body{
+    background: url("../image/login-background.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container{
+    width: 300px;
+    height: 250px;
+    background-color: #008c8c;
+    margin: 0 auto;
+    margin-top: 10%;
+    padding-top: 1px;
+}
+
+.container .item{
+    width: 280px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.container .title{
+    background-color:blue;
+    height: 30px;
+    text-indent: 0.7em;
+    line-height: 30px;
+}
+
+.container .item input{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.container .login-btn button{
+    width: 100%;
+    height: 100%;
+    background-color:#97D9A1;
+}
+
+.container .verfiy-code{
+    position: relative;
+}
+
+.container .verfiy-code button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 30px;
+    box-sizing: border-box;
+    color: blue;
+}
+
+.container .declare input{
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+}
+
+.container .declare .readme{
+    font-size: 13px;
+    color: blue;
+    margin-left: 5px;
+    vertical-align: middle;
+}
