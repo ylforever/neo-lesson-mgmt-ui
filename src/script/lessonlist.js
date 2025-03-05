@@ -6,27 +6,38 @@ function loadLessonList(){
 }
 
 /**
- * 初始化课程列表
+ * 初始化课程表
  * 
  * @param {查询结果} result 
  */
 function initLessonList(result){
     var lessonListHtml = "";
+    lessonListHtml += "<tr> "
+                    + "<th class='operator'>序号</th>"
+                    + "<th class='operator'>操作</th>"
+                    + "<th class='lesson' scope='col'>课程</th>"   
+                    + "<th class='total-surplus-lesson-num' scope='col'>总剩余课时</th>" 
+                    + "<th class='teacher email'>指导老师</th>"  
+                    + "<th class='create-user email' scope='col'>创建人</th>"   
+                    + "<th class='create-time' scope='col'>创建时间</th>"
+                + "</tr>"
+
     var lessonList = result.data;
 
     // 循环构建课程列表数据
     for(var i = 0; i < lessonList.length; ++i){
-        if (i == 0) {
-            lessonListHtml += "<li id=" + lessonList[i].lessonCode + " class='item selected-lesson clearfix'>" 
-                                + '<div class="float-left"> <i class="iconfont icon-shanchu" onclick="deleteLesson(this)"></i> </div>'         
-                                + '<div class="lesson-name float-left" onclick="selectLesson(this)">' + lessonList[i].name +'</div>'
-                                +"</li>";
-        } else {
-            lessonListHtml += "<li id="+ lessonList[i].lessonCode + " class='item clearfix'>" 
-                                + '<div class="float-left"> <i class="iconfont icon-shanchu" onclick="deleteLesson(this)"></i> </div>'         
-                                + '<div class="lesson-name float-left" onclick="selectLesson(this)">' + lessonList[i].name +'</div>'
-                                + "</li>";
-        }
+        const lesson = lessonList[i];
+
+        lessonListHtml += '<tr id="' + lesson.lessonCode +'">'
+                            + '<td>' + (i+1) + '</td>'
+                            + '<td class="operator">'
+                            + '<button class="operator-btn" onclick="deleteLesson(this)">删除</button></td>'
+                            + '<td class="lesson" onclick="clickLessonName(this)">' + lesson.name + '</td>'
+                            + '<td class="total-surplus-lesson-num">' + 0 + '</td>'
+                            + '<td class="teacher email">' + 'yzy4101@163.com' + '</td>'
+                            + '<td class="create-user email">' + lesson.createUser + '</td>'
+                            + '<td class="create-time">' + lesson.createTime + '</td>'
+                        + '</tr>';
     }
 
     document.getElementById("lesson-list-id").innerHTML = lessonListHtml;
@@ -46,26 +57,6 @@ function deleteLesson(item){
 
     // 重新加载课程树
     loadLessonList();
-}
-
-/**
- * 选中课程
- * 
- * @param {选择的dom条目} item 
- */
-function selectLesson(item) {
-    // 去除所有课程的选中记录
-    var ulNode = document.getElementById("lesson-list-id");
-    for (var i = 0; i < ulNode.childNodes.length; ++i) {
-        var child = ulNode.childNodes[i];
-        child.classList.remove("selected-lesson");
-    }
-
-    // 将当前项设置为选中项
-    var selectedliNode = item.parentNode;
-    selectedliNode.classList.add("selected-lesson");
-
-    loadStudentOfSelectedLesson();
 }
 
 /**
@@ -119,8 +110,28 @@ function addLessonCallbackFun(result) {
     }
 
     // 3、刷新学员表
-    loadStudentOfSelectedLesson();
+    loadStudentOfSelectedLesson(lessonCode);
     
     var dialog = document.getElementById("add-lesson-dialog-id");
     dialog.classList.add("hidden");
+}
+
+/**
+ * 点击课程名称
+ * 
+ * @param {点击的课程名称} item 
+ */
+function clickLessonName(item) {
+  const lessonCode = item.parentNode.id;
+
+  document.getElementById("setudent-mgmt-menu-id").classList.add("selected");
+  document.getElementById("lesson-mgmt-menu-id").classList.remove("selected");
+  document.getElementById("download-report-menu-id").classList.remove("selected");
+
+  document.getElementById("lesson-mgmt-area-id").classList.add("hidden");
+  document.getElementById("student-mgmt-area-id").classList.remove("hidden");
+  document.getElementById("download-report-area-id").classList.add("hidden");
+
+  // 查询课程列表, 默认取第一个加载
+  loadStudentOfSelectedLesson(lessonCode);
 }

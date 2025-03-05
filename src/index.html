@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>课时管理工具</title>
+    <link rel="shortcut icon" href="./image/lesson.png">
+
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/lessonlist.css">
@@ -13,35 +15,52 @@
     <script src="./script/login.js"></script>
     <script src="./script/studentcontent.js"></script>
     <script src="./script/lessonlist.js"></script>
+    <script src="./script/header.js"></script>
 </head>
 <body>
+    <!--未登录则自动跳转到登录界面-->
     <script>
         if(!localStorage.getItem("jwt-token")){
-            alert("未登录");
             window.location.href = "./login.html";
         }
     </script>
 
+    <!--菜单栏-->
     <div class="header clearfix">
-        <div class="float-left">
-            <h1 class="title">课时管理工具</h1>
+        <div class="logo float-left">
         </div>
-        <div class="float-right">
+        <div class="menu float-left">
+            <ul class="menu-list clearfix">
+                <li id="lesson-mgmt-menu-id" class="item float-left" onclick="selectLessonMgMt()">课程管理</li>
+                <li id="setudent-mgmt-menu-id" class="item float-left selected" onclick="selectStudentMgMt()">学员管理</li>
+                <li id="download-report-menu-id" class="item float-left" onclick="selectDownloadReport()">报告下载</li>
+            </ul>
+        </div>
+        <div class="logout float-right">
             <button onclick="logout()">注销</button>
         </div>
     </div>
-    <div class="container clearfix">
-        <!--左侧课程列表-->
-        <div class="lesson-list-nav float-left">
-            <ul id="lesson-list-id" class="lesson-list"></ul>
+
+    <!--课程管理-->
+    <div id="lesson-mgmt-area-id" class="lesson-mgmt-area container">
+        <div class="tool-btn">
+            <div class="add-lesson">
+                <button class="lesson-mgmt-button" onclick="showAddLessonDialog()">添加课程</button>
+            </div>
         </div>
 
-        <!--右侧学员列表-->
+        <!--课程列表-->
+        <div class="lesson-list-nav">
+            <table id="lesson-list-id">
+            </table>
+        </div>
+    </div>
+
+    <!--学员管理-->
+    <div id="student-mgmt-area-id" class="student-mgmt-area container">
+        <!--学员列表-->
         <div class="student-content">
             <div class="tool-btn clearfix">
-                <div class="add-lesson float-left">
-                    <button class="lesson-mgmt-button" onclick="showAddLessonDialog()">添加课程</button>
-                </div>
                 <div class="add-student float-left">
                     <button class="lesson-mgmt-button" onclick="showAddStudentDialog()">添加学员</button>
                 </div>
@@ -148,9 +167,14 @@
         </div>
     </div>
 
+    <!--报告下载区域-->
+    <div id="download-report-area-id" class="download-report-area">
+
+    </div>
+
     <script>
         loadLessonList(); 
-        loadStudentOfSelectedLesson();
+        selectLessonMgMt();
     </script>
 </body>
 </html>

@@ -3,7 +3,8 @@
  */
 // var SERVICE_ADDRESS = "http://47.107.248.50:9527";
 // var SERVICE_ADDRESS = "http://localhost:9527";
-var SERVICE_ADDRESS = "http://localhost";
+// var SERVICE_ADDRESS = "http://localhost";
+var SERVICE_ADDRESS = "http://192.168.193.7";
 // var SERVICE_ADDRESS = "http://47.107.248.50";
 
 /**

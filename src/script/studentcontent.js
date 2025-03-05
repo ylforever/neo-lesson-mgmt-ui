@@ -8,18 +8,11 @@ var CURRENT_STUDENT_CODE;
 /**
  * 加载选中课程包含的学员
  */
-function loadStudentOfSelectedLesson(){
-    // 1、获取选中的课程编码
-    const lessonList = document.getElementsByClassName("selected-lesson");
-    if (lessonList.length == 0) {
-        return;
-    }
-
+function loadStudentOfSelectedLesson(lessonCode){
     // DOM的id保存的是课程编码
-    const lessonCode = lessonList[0].id;
     CURRENT_LESSON_CODE = lessonCode;
     
-    // 2、查询课程包含的学员更新表格
+    // 查询课程包含的学员更新表格
     var pageVo = {
         "pageNo": 1,
         "amount": 50
@@ -52,7 +45,7 @@ function initStudentTable(result){
                         + '<td class="operator clearfix">'
                         + '<button class="operator-btn float-left" onclick="deleteStudent(this)">删除</button>'
                         +' <button class="operator-btn float-left" onclick="increaseLessonNum(this)">加课时</button>'
-                        +' <button class="float-left" onclick="decreaseLessonNum(this)">减课时</button></td>'
+                        +' <button class="operator-btn float-left" onclick="decreaseLessonNum(this)">减课时</button></td>'
                         + '<td class="name">' + student.name + '</td>'
                         + '<td class="lesson-num">' + student.surplusLessonNum + '</td>'
                         + '<td class="lesson">' + student.lessonName +'</td>'
@@ -94,7 +87,7 @@ function confirmAddStudent(){
     }
 
     insertStudentProxy(student);
-    loadStudentOfSelectedLesson();
+    loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 
     // 关闭对话框
     document.getElementById("add-student-dialog-id").classList.add("hidden");
@@ -110,7 +103,7 @@ function deleteStudent(item){
     const studentCode = studentRow.id;
 
     deleteStudentProxy(CURRENT_LESSON_CODE, studentCode);
-    loadStudentOfSelectedLesson();
+    loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 }
 
 /**
@@ -140,7 +133,7 @@ function confirmIncreaseLessNum(){
     var incrLessonNum = document.getElementById("increase-less-num-dialog-lesson-num-id").value;
 
     increaseLessonNumProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE, incrLessonNum);
-    loadStudentOfSelectedLesson();
+    loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 
     document.getElementById("increase-less-num-dialog-id").classList.add("hidden");
 }
@@ -172,7 +165,7 @@ function confirmDecreaseLessNum(){
     var incrLessonNum = document.getElementById("decrease-less-num-dialog-lesson-num-id").value;
 
     decreaseLessonNumProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE, incrLessonNum);
-    loadStudentOfSelectedLesson();
+    loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 
     document.getElementById("decrease-less-num-dialog-id").classList.add("hidden");
 }

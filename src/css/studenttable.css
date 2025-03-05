@@ -15,14 +15,6 @@
     margin-left: 20px;
 }
 
-.container .student-content .tool-btn .add-lesson{
-    margin-left: 10px;
-    margin-top: 4px;
-    height: 25px;
-    line-height: 25px;
-    box-sizing: border-box;
-}
-
 .container .student-content .tool-btn .add-student{
     margin-left: 10px;
     margin-top: 4px;
@@ -59,11 +51,6 @@
 
 .container .student-content .student-table .lesson-num{
     width: 100px;
-    text-align: center;
-}
-
-.container .student-content .student-table .email {
-    width: 500px;
     text-align: center;
 }
 

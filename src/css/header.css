@@ -1,6 +1,31 @@
 @import "common.css";
 
-.header h1{
-    color: #28595e;
+.header .menu .menu-list{
     margin: 0;
+    width: 100%;
+}
+
+.header .menu .menu-list .item{
+    margin-left: 5px;
+    margin-right: 25px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.header .menu .menu-list .selected{
+    color: blue;
+}
+
+.header .logo{
+    width: 20px;
+    height: 20px;
+    background: url("../image/lesson.png") 30px 30px no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.header .logout{
+    margin-right: 25px;
 }

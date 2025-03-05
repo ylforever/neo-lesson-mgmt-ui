@@ -25,6 +25,11 @@ button{
     border-radius: 5px;
 }
 
+.email {
+    width: 300px;
+    text-align: center;
+}
+
 /*弹出对话框公共样式设置开始*/
 .dialog-item{
     height: 25px;

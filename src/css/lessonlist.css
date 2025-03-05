@@ -1,33 +1,54 @@
 @import "common.css";
 
-.container .lesson-list-nav .lesson-list{
-    margin-top: 0;
-    margin-left: 5px;
-}
-
-.container .lesson-list-nav .lesson-list .item{
-    margin-top: 5px;
-    font-weight: 400;
-    font-size: 16px;
-    font-family: "Gill Sans", sans-serif;
-}
-
-.container .lesson-list-nav .lesson-list .item i{
-    cursor: pointer;
-}
-
-.container .lesson-list-nav .lesson-list .item .lesson-name{
-    width: 50px;
+/*表格样式设置开始*/
+.lesson-mgmt-area .tool-btn .add-lesson{
     margin-left: 10px;
-    cursor: pointer;
+    margin-top: 4px;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+}
+
+.lesson-mgmt-area .lesson-list-nav table tr{
+    font-size: 14px;
     white-space: nowrap;
 }
 
-.container .lesson-list-nav .lesson-list .selected-lesson{
-    color: rgb(0, 100, 200);
-    border-right: 2px solid rgb(0, 100, 200);
-    font-weight: 800;
+.lesson-mgmt-area .lesson-list-nav table tr th{
+    background-color: #EFEFEF;
 }
+
+.lesson-mgmt-area .lesson-list-nav .operator .operator-btn{
+    margin-right: 5px;
+}
+
+.lesson-mgmt-area .lesson-list-nav .lesson{
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
+    color: blue;
+}
+
+.lesson-mgmt-area .lesson-list-nav .total-surplus-lesson-num{
+    width: 100px;
+    text-align: center;
+}
+
+.lesson-mgmt-area .lesson-list-nav .create-time{
+    width: 200px;
+    text-align: center;
+}
+
+.lesson-mgmt-area .lesson-list-nav table tr:nth-child(odd) {
+    background-color: #efefef;
+}
+
+.lesson-mgmt-area .lesson-list-nav table tr button{
+    background-color: #19777f;
+    color: white;
+}
+
+/*表格样式设置结束*/
 
 /*添加课程对话框样式设置开始*/
 .container .add-lesson-dialog{
