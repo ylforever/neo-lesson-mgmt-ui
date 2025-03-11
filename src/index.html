@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/lessonlist.css">
     <link rel="stylesheet" href="./css/studenttable.css">
+    <link rel="stylesheet" href="./css/report.css">
 
     <script src="./script/lessonmgmtproxy.js"></script>
     <script src="./script/login.js"></script>
     <script src="./script/studentcontent.js"></script>
     <script src="./script/lessonlist.js"></script>
+    <script src="./script/report.js"></script>
     <script src="./script/header.js"></script>
 </head>
 <body>
@@ -26,17 +28,17 @@
     </script>
 
     <!--菜单栏-->
-    <div class="header clearfix">
-        <div class="logo float-left">
+    <div class="header">
+        <div class="logo">
         </div>
-        <div class="menu float-left">
-            <ul class="menu-list clearfix">
-                <li id="lesson-mgmt-menu-id" class="item float-left" onclick="selectLessonMgMt()">课程管理</li>
-                <li id="setudent-mgmt-menu-id" class="item float-left selected" onclick="selectStudentMgMt()">学员管理</li>
-                <li id="download-report-menu-id" class="item float-left" onclick="selectDownloadReport()">报告下载</li>
+        <div class="menu">
+            <ul class="menu-list">
+                <li id="lesson-mgmt-menu-id" class="item" onclick="selectLessonMgMt()">课程管理</li>
+                <li id="setudent-mgmt-menu-id" class="item selected" onclick="selectStudentMgMt()">学员管理</li>
+                <li id="download-report-menu-id" class="item" onclick="selectDownloadReport()">报告下载</li>
             </ul>
         </div>
-        <div class="logout float-right">
+        <div class="logout">
             <button onclick="logout()">注销</button>
         </div>
     </div>
@@ -53,6 +55,21 @@
         <div class="lesson-list-nav">
             <table id="lesson-list-id">
             </table>
+        </div>
+
+        <!--新增课程对话框-->
+        <div id="add-lesson-dialog-id" class="add-lesson-dialog hidden">
+            <div class="dialog-title">
+                添加课程
+            </div>
+            <div class="dialog-item clearfix">
+                <div class="atttribute-name float-left">课程名称:</div>
+                <input id="add-lesson-dialog-name-id" class="float-left" type="text">
+            </div>
+            <div class="dialog-item clearfix">
+                <button class="lesson-mgmt-button float-right" onclick="cancelAddLesson()">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmAddLesson()">确定</button>
+            </div>
         </div>
     </div>
 
@@ -95,21 +112,6 @@
                 <div class="page-item total-num float-left">
                     <label>共26条</label>
                 </div>
-            </div>
-        </div>
-
-        <!--新增课程对话框-->
-        <div id="add-lesson-dialog-id" class="add-lesson-dialog hidden">
-            <div class="dialog-title">
-                添加课程
-            </div>
-            <div class="dialog-item clearfix">
-                <div class="atttribute-name float-left">课程名称:</div>
-                <input id="add-lesson-dialog-name-id" class="float-left" type="text">
-            </div>
-            <div class="dialog-item clearfix">
-                <button class="lesson-mgmt-button float-right" onclick="cancelAddLesson()">取消</button>
-                <button class="lesson-mgmt-button float-right" onclick="confirmAddLesson()">确定</button>
             </div>
         </div>
 
@@ -169,7 +171,18 @@
 
     <!--报告下载区域-->
     <div id="download-report-area-id" class="download-report-area">
+        <div class="tool-btn clearfix">
+            <div class="generate-report float-left">
+                <button class="lesson-mgmt-button" onclick="generateReport()">生成报告</button>
+                <button class="lesson-mgmt-button" onclick="refreshReportTable()">刷新</button>
+            </div>
+        </div>
 
+        <!--课程表格-->
+        <div class="lesson-report">
+            <table id="lesson-report-id">
+            </table>
+        </div>
     </div>
 
     <script>

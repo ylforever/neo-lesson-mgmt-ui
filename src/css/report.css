@@ -1,0 +1,17 @@
+@import url("./common.css");
+
+/*工具栏样式设置开始*/
+.download-report-area .tool-btn .generate-report{
+    margin-left: 10px;
+    margin-top: 4px;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+}
+
+/*工具栏样式设置结束*/
+
+.download-report-area .lesson-report .lesson-tr .file-name{
+    color: blue;
+    cursor: pointer;
+}

@@ -4,8 +4,8 @@
 // var SERVICE_ADDRESS = "http://47.107.248.50:9527";
 // var SERVICE_ADDRESS = "http://localhost:9527";
 // var SERVICE_ADDRESS = "http://localhost";
-var SERVICE_ADDRESS = "http://192.168.193.7";
-// var SERVICE_ADDRESS = "http://47.107.248.50";
+// var SERVICE_ADDRESS = "http://192.168.193.7";
+var SERVICE_ADDRESS = "http://47.107.248.50";
 
 /**
  * 处理rest请求结果
@@ -34,7 +34,6 @@ function queryLessonListProxy(handlerFun){
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     const token = localStorage.getItem("jwt-token");
-    xhr.setRequestHeader('account', "neo");
     xhr.setRequestHeader('jwt-token', token);
 
     xhr.send();
@@ -214,3 +213,59 @@ function loginProxy(userLogin, handlerFun){
     xhr.send(userLoginJson);
 }
 
+
+/**
+ * 查询课程报告代理接口
+ * 
+ * @param {回调结果处理函数} handleFun 
+ */
+function queryLessonReportProxy(handlerFun){
+    var xhr = new XMLHttpRequest();
+    var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/report/query-lesson-report";
+    xhr.onload = handleResult(xhr, handlerFun);
+
+    xhr.open("GET", requestPath, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    const token = localStorage.getItem("jwt-token");
+    xhr.setRequestHeader('jwt-token', token);
+
+    xhr.send();
+}
+
+
+/**
+ * 下载报告文件
+ * 
+ * @param {报告编码} reportCode 
+ */
+function downloadReportProxy(reportCode, handleDownloadReport) {
+    var xhr = new XMLHttpRequest();
+    var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/report/download-report/" + reportCode;
+    xhr.onload = handleDownloadReport(xhr);
+    xhr.responseType = 'blob';
+
+    xhr.open("GET", requestPath, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    const token = localStorage.getItem("jwt-token");
+    xhr.setRequestHeader('jwt-token', token);
+
+    xhr.send();
+}
+
+/**
+ * 生成报告代理接口
+ */
+function generateReportProxy(){
+    var xhr = new XMLHttpRequest();
+    var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/report/generate-report";
+
+    xhr.open("POST", requestPath, false);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    const token = localStorage.getItem("jwt-token");
+    xhr.setRequestHeader('jwt-token', token);
+
+    xhr.send();
+}

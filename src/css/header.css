@@ -3,6 +3,8 @@
 .header .menu .menu-list{
     margin: 0;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header .menu .menu-list .item{
@@ -27,5 +29,6 @@
 }
 
 .header .logout{
-    margin-right: 25px;
+    position: absolute;
+    right: 10px;
 }

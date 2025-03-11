@@ -6,6 +6,8 @@
     height: 30px;
     background-color: #EDF4EC;
     line-height: 30px;
+    display: flex;
+    position: relative;
 }
 
 .container{

@@ -30,7 +30,7 @@ function loadStudentOfSelectedLesson(lessonCode){
 function initStudentTable(result){
     var studentHtml = "";
     studentHtml += "<tr> "
-                    + "<th class='operator'>序号</th>"
+                    + "<th class='no'>序号</th>"
                     + "<th class='operator'>操作</th>"
                     + "<th class='name' scope='col'>姓名</th>"   
                     + "<th class='lesson-num' scope='col'>剩余课时</th>" 
@@ -42,10 +42,10 @@ function initStudentTable(result){
         const student = studentList[i];
         studentHtml += '<tr id="' + student.studentCode +'">'
                         + '<td>' + (i+1) + '</td>'
-                        + '<td class="operator clearfix">'
-                        + '<button class="operator-btn float-left" onclick="deleteStudent(this)">删除</button>'
-                        +' <button class="operator-btn float-left" onclick="increaseLessonNum(this)">加课时</button>'
-                        +' <button class="operator-btn float-left" onclick="decreaseLessonNum(this)">减课时</button></td>'
+                        + '<td class="operator-btns">'
+                        + '<button class="operator-btn" onclick="deleteStudent(this)">删除</button>'
+                        +' <button class="operator-btn" onclick="increaseLessonNum(this)">加课时</button>'
+                        +' <button class="operator-btn" onclick="decreaseLessonNum(this)">减课时</button></td>'
                         + '<td class="name">' + student.name + '</td>'
                         + '<td class="lesson-num">' + student.surplusLessonNum + '</td>'
                         + '<td class="lesson">' + student.lessonName +'</td>'

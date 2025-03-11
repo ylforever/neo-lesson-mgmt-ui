@@ -46,6 +46,9 @@ function handleToken(result){
     window.location.href = "./index.html";
 }
 
+/**
+ * 注销
+ */
 function logout(){
     localStorage.removeItem("jwt-token");
     window.location.href = "./login.html";

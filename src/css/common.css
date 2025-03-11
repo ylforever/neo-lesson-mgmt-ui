@@ -20,6 +20,7 @@ button{
 }
 
 .lesson-mgmt-button{
+    width: 70px;
     background-color: #19777f;
     color: white;
     border-radius: 5px;
@@ -56,5 +57,25 @@ button{
     text-indent: 0.5em;
 }
 
-
 /*弹出对话框公共样式设置结束*/
+
+/*表格样式设置开始*/
+.lesson-tr{
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.lesson-tr th{
+    background-color: #EFEFEF;
+}
+
+.lesson-tr:nth-child(odd) {
+    background-color: #efefef;
+}
+
+.lesson-tr button{
+    background-color: #19777f;
+    color: white;
+}
+
+/*表格样式设置结束*/

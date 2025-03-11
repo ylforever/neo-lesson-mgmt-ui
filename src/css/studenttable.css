@@ -35,7 +35,11 @@
     background-color: #EFEFEF;
 }
 
-.container .student-content .student-table .operator .operator-btn{
+.container .student-content .student-table .operator-btns{
+    display: flex;
+}
+
+.container .student-content .student-table .operator-btns .operator-btn{
     margin-right: 5px;
 }
 

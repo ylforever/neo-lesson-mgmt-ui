@@ -58,4 +58,6 @@ function selectDownloadReport(){
     document.getElementById("lesson-mgmt-area-id").classList.add("hidden");
     document.getElementById("student-mgmt-area-id").classList.add("hidden");
     document.getElementById("download-report-area-id").classList.remove("hidden");
+
+    loadLessonReport();
 }
