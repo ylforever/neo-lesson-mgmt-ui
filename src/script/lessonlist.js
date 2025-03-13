@@ -15,7 +15,7 @@ function initLessonList(result){
     lessonListHtml += "<tr> "
                     + "<th class='operator'>序号</th>"
                     + "<th class='operator'>操作</th>"
-                    + "<th class='lesson' scope='col'>课程</th>"   
+                    + "<th class='lesson-title' scope='col'>课程</th>"   
                     + "<th class='total-surplus-lesson-num' scope='col'>总剩余课时</th>" 
                     + "<th class='teacher email'>指导老师</th>"  
                     + "<th class='create-user email' scope='col'>创建人</th>"   
@@ -28,15 +28,15 @@ function initLessonList(result){
     for(var i = 0; i < lessonList.length; ++i){
         const lesson = lessonList[i];
 
-        lessonListHtml += '<tr id="' + lesson.lessonCode +'">'
+        lessonListHtml += '<tr id="' + lesson.lessonCode +'"' + ' name="' + lesson.name + '" class="lesson-tr">'
                             + '<td>' + (i+1) + '</td>'
                             + '<td class="operator">'
-                            + '<button class="operator-btn" onclick="deleteLesson(this)">删除</button></td>'
+                            + '<button class="operator-btn" onclick="showDeleteLessonDialog(this)">删除</button></td>'
                             + '<td class="lesson" onclick="clickLessonName(this)">' + lesson.name + '</td>'
                             + '<td class="total-surplus-lesson-num">' + 0 + '</td>'
                             + '<td class="teacher email">' + 'yzy4101@163.com' + '</td>'
                             + '<td class="create-user email">' + lesson.createUser + '</td>'
-                            + '<td class="create-time">' + lesson.createTime + '</td>'
+                            + '<td class="create-time">' + transformUTC2LocalTime(lesson.createTime) + '</td>'
                         + '</tr>';
     }
 
@@ -44,19 +44,42 @@ function initLessonList(result){
 }
 
 /**
- * 删除课程
+ * 显示删除课程对话框
  * 
- * @param {选择的dom条目} item 
+ * @param {删除的lesson} item 
  */
-function deleteLesson(item){
+function showDeleteLessonDialog(item){
     var lessonNode = item.parentNode.parentNode;
-    const lessonCode = lessonNode.id;
+    CURRENT_LESSON_CODE = lessonNode.id;
 
+    // 设置显示的课程名称
+    var lessonName = lessonNode.getAttribute('name');
+    document.getElementById("delete-lesson-name-id").innerHTML = lessonName;
+
+    document.getElementById("delete-lesson-dialog-id").classList.remove('hidden');
+}
+
+/**
+ * 确定删除课程 
+ */
+function confirmDeleteLesson(){
     // 删除课程
-    deleteLessonProxy(lessonCode);
+    deleteLessonProxy(CURRENT_LESSON_CODE);
 
     // 重新加载课程树
     loadLessonList();
+
+    document.getElementById("delete-lesson-dialog-id").classList.add('hidden');
+
+    // 解除绑定
+    document.getElementById("confirm-delete-lesson-btn-id").removeEventListener("click", deleteLesson);
+}
+
+/**
+ * 取消删除课程操作
+ */
+function cancelDeleteLesson(){
+    document.getElementById("delete-lesson-dialog-id").classList.add('hidden');
 }
 
 /**
@@ -98,20 +121,7 @@ function addLessonCallbackFun(result) {
     // 1、刷新课程列表
     loadLessonList();
 
-    // 2、设置新加的课程为选中状态
-    var ulNode = document.getElementById("lesson-list-id");
-    for (var i = 0; i < ulNode.childNodes.length; ++i) {
-        var child = ulNode.childNodes[i];
-        child.classList.remove("selected-lesson");
-
-        if (child.id == lessonCode){
-            child.classList.add("selected-lesson")
-        }
-    }
-
-    // 3、刷新学员表
-    loadStudentOfSelectedLesson(lessonCode);
-    
+    // 2、隐藏对话框
     var dialog = document.getElementById("add-lesson-dialog-id");
     dialog.classList.add("hidden");
 }
@@ -132,6 +142,6 @@ function clickLessonName(item) {
   document.getElementById("student-mgmt-area-id").classList.remove("hidden");
   document.getElementById("download-report-area-id").classList.add("hidden");
 
-  // 查询课程列表, 默认取第一个加载
+  // 查询课程列表
   loadStudentOfSelectedLesson(lessonCode);
 }

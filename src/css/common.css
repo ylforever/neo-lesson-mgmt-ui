@@ -21,9 +21,9 @@ button{
 
 .lesson-mgmt-button{
     width: 70px;
-    background-color: #19777f;
+    background-color: #37ad96ff;
     color: white;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .email {
@@ -35,6 +35,7 @@ button{
 .dialog-item{
     height: 25px;
     margin: 20px 5px;
+    box-sizing: border-box;
 }
 
 .dialog-item .atttribute-name{
@@ -74,7 +75,7 @@ button{
 }
 
 .lesson-tr button{
-    background-color: #19777f;
+    background-color: #37ad96ff;
     color: white;
 }
 

@@ -17,19 +17,18 @@ function selectLessonMgMt(){
 
 /**
  * 选择学员管理菜单项
- * 
  */
 function selectStudentMgMt(){
     document.getElementById("setudent-mgmt-menu-id").classList.add("selected");
     document.getElementById("lesson-mgmt-menu-id").classList.remove("selected");
     document.getElementById("download-report-menu-id").classList.remove("selected");
 
+    // 查询课程列表, 默认取第一个加载
+    queryLessonListProxy(loadStudentOfFirstLesson);
+
     document.getElementById("lesson-mgmt-area-id").classList.add("hidden");
     document.getElementById("student-mgmt-area-id").classList.remove("hidden");
     document.getElementById("download-report-area-id").classList.add("hidden");
-
-    // 查询课程列表, 默认取第一个加载
-    queryLessonListProxy(loadStudentOfFirstLesson);
 }
 
 /**

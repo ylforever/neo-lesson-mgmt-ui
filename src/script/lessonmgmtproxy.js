@@ -3,9 +3,9 @@
  */
 // var SERVICE_ADDRESS = "http://47.107.248.50:9527";
 // var SERVICE_ADDRESS = "http://localhost:9527";
-// var SERVICE_ADDRESS = "http://localhost";
+var SERVICE_ADDRESS = "http://localhost";
 // var SERVICE_ADDRESS = "http://192.168.193.7";
-var SERVICE_ADDRESS = "http://47.107.248.50";
+// var SERVICE_ADDRESS = "http://47.107.248.50";
 
 /**
  * 处理rest请求结果
@@ -262,6 +262,26 @@ function generateReportProxy(){
     var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/report/generate-report";
 
     xhr.open("POST", requestPath, false);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    const token = localStorage.getItem("jwt-token");
+    xhr.setRequestHeader('jwt-token', token);
+
+    xhr.send();
+}
+
+/**
+ * 删除报告
+ * 
+ * @param {报告编码} reportCode 
+ * @param {结果处理函数} handlerFun 
+ */
+function deleteReportProxy(reportCode, handlerFun){
+    var xhr = new XMLHttpRequest();
+    var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/report/delete-report/" + reportCode;
+    xhr.onload = handleResult(xhr, handlerFun);
+
+    xhr.open("DELETE", requestPath, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     const token = localStorage.getItem("jwt-token");

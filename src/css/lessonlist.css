@@ -43,11 +43,6 @@
     background-color: #efefef;
 }
 
-.lesson-mgmt-area .lesson-list-nav table tr button{
-    background-color: #19777f;
-    color: white;
-}
-
 /*表格样式设置结束*/
 
 /*添加课程对话框样式设置开始*/
@@ -62,3 +57,20 @@
 }
 
 /*添加课程对话框样式设置结束*/
+
+/*删除课程对话框样式设置开始*/
+.container .delete-lesson-dialog{
+    width: 300px;
+    height: 180px;
+    border: 1px solid;
+    background-color: #EFEFEF;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+}
+
+.container .delete-lesson-dialog .warn{
+    padding-left: 5px;
+}
+
+/*删除课程对话框样式设置结束*/

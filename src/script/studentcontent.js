@@ -1,4 +1,3 @@
-
 // 记录当前选中的课程编码
 var CURRENT_LESSON_CODE;
 
@@ -11,7 +10,7 @@ var CURRENT_STUDENT_CODE;
 function loadStudentOfSelectedLesson(lessonCode){
     // DOM的id保存的是课程编码
     CURRENT_LESSON_CODE = lessonCode;
-    
+
     // 查询课程包含的学员更新表格
     var pageVo = {
         "pageNo": 1,
@@ -34,20 +33,23 @@ function initStudentTable(result){
                     + "<th class='operator'>操作</th>"
                     + "<th class='name' scope='col'>姓名</th>"   
                     + "<th class='lesson-num' scope='col'>剩余课时</th>" 
+                    + "<th class='update-time' scope='col'>最近修改时间</th>"
                     + "<th class='lesson'>课程</th>"  
                     + "<th class='email' scope='col'>email</th>"   
                 + "</tr>"
     var studentList = result.data.dataList;
     for(var i = 0; i < studentList.length; ++i){
         const student = studentList[i];
-        studentHtml += '<tr id="' + student.studentCode +'">'
+        studentHtml += '<tr id="' + student.studentCode + '"' + ' class="lesson-tr"' + ' lesson-code="' 
+                        + student.lessonCode + '">'
                         + '<td>' + (i+1) + '</td>'
                         + '<td class="operator-btns">'
                         + '<button class="operator-btn" onclick="deleteStudent(this)">删除</button>'
-                        +' <button class="operator-btn" onclick="increaseLessonNum(this)">加课时</button>'
-                        +' <button class="operator-btn" onclick="decreaseLessonNum(this)">减课时</button></td>'
+                        +' <button class="operator-btn" onclick="showIncreaseLessonNumDialog(this)">加课时</button>'
+                        +' <button class="operator-btn" onclick="showDecreaseLessonNumDialog(this)">减课时</button></td>'
                         + '<td class="name">' + student.name + '</td>'
                         + '<td class="lesson-num">' + student.surplusLessonNum + '</td>'
+                        + '<td class="update-time">' + transformUTC2LocalTime(student.updateTime) + '</td>'
                         + '<td class="lesson">' + student.lessonName +'</td>'
                         + '<td class="email">' + student.email +'</td>'
                     + '</tr>';
@@ -101,9 +103,10 @@ function confirmAddStudent(){
 function deleteStudent(item){
     var studentRow = item.parentNode.parentNode;
     const studentCode = studentRow.id;
+    var lessonCode = studentRow.getAttribute("lesson-code");
 
-    deleteStudentProxy(CURRENT_LESSON_CODE, studentCode);
-    loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
+    deleteStudentProxy(lessonCode, studentCode);
+    loadStudentOfSelectedLesson(lessonCode);
 }
 
 /**
@@ -111,8 +114,8 @@ function deleteStudent(item){
  * 
  * @param {加课时按钮对象} item 
  */
-function increaseLessonNum(item){
-    var studentRow = item.parentNode.parentNode;
+function showIncreaseLessonNumDialog(item){
+    var studentRow = item.parentNode.parentNode;    
     CURRENT_STUDENT_CODE = studentRow.id;
 
     var dialog = document.getElementById("increase-less-num-dialog-id");
@@ -143,7 +146,7 @@ function confirmIncreaseLessNum(){
  * 
  * @param {减课时按钮} item 
  */
-function decreaseLessonNum(item){
+function showDecreaseLessonNumDialog(item){
     var studentRow = item.parentNode.parentNode;
     CURRENT_STUDENT_CODE = studentRow.id;
 

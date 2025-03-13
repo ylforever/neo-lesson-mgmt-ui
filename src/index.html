@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/studenttable.css">
     <link rel="stylesheet" href="./css/report.css">
 
+    <script src="./script/util.js"></script>
     <script src="./script/lessonmgmtproxy.js"></script>
     <script src="./script/login.js"></script>
     <script src="./script/studentcontent.js"></script>
@@ -69,6 +70,24 @@
             <div class="dialog-item clearfix">
                 <button class="lesson-mgmt-button float-right" onclick="cancelAddLesson()">取消</button>
                 <button class="lesson-mgmt-button float-right" onclick="confirmAddLesson()">确定</button>
+            </div>
+        </div>
+        
+        <!--删除课程确认对话框-->
+        <div id="delete-lesson-dialog-id" class="delete-lesson-dialog hidden">
+            <div class="dialog-title">
+                删除课程
+            </div>
+            <div class="dialog-item">
+                <label>课程名称: </label> <label id="delete-lesson-name-id"></label>
+            </div>
+            <div class="warn">
+                操作提醒：删除课程将同时删除课程包含的所有学员信息. 请确定是否删除?
+            </div>
+
+            <div class="dialog-item clearfix">
+                <button class="lesson-mgmt-button float-right" onclick="cancelDeleteLesson()">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmDeleteLesson()">确定</button>
             </div>
         </div>
     </div>
@@ -148,8 +167,8 @@
                 <input id="increase-less-num-dialog-lesson-num-id" class="float-left" type="number">
             </div>
             <div class="dialog-item clearfix">
-                <button class="lesson-mgmt-button float-right" onclick="cancelIncreaseLessNum(this)">取消</button>
-                <button class="lesson-mgmt-button float-right" onclick="confirmIncreaseLessNum(this)">确定</button>
+                <button class="lesson-mgmt-button float-right" onclick="cancelIncreaseLessNum()">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmIncreaseLessNum()">确定</button>
             </div>
         </div>
 
@@ -159,12 +178,12 @@
                 扣减课时
             </div>
             <div class="dialog-item clearfix">
-                <div class="atttribute-name float-left">扣课数量:</div>
+                <div class="atttribute-name float-left">减课数量:</div>
                 <input id="decrease-less-num-dialog-lesson-num-id" class="float-left" type="number">
             </div>
             <div class="dialog-item clearfix">
-                <button class="lesson-mgmt-button float-right" onclick="cancelDecreaseLessNum(this)">取消</button>
-                <button class="lesson-mgmt-button float-right" onclick="confirmDecreaseLessNum(this)">确定</button>
+                <button class="lesson-mgmt-button float-right" onclick="cancelDecreaseLessNum()">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmDecreaseLessNum()">确定</button>
             </div>
         </div>
     </div>

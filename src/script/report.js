@@ -14,6 +14,7 @@ function initReportTable(result){
     var reportTableHtml = "";
     reportTableHtml += "<tr class='lesson-tr'> "
                     + "<th class='no' scope='col'>序号</th>"
+                    + "<th class='operator'>操作</th>"
                     + "<th class='file-name-header' scope='col'>报告名称</th>"   
                     + "<th class='state' scope='col'>状态</th>"   
                     + "<th class='create-user email' scope='col'>创建人</th>"   
@@ -28,10 +29,12 @@ function initReportTable(result){
 
         reportTableHtml += '<tr id="' + report.reportCode +'" class="lesson-tr">'
                         + '<td class="no">' + (i+1) + '</td>'
+                        + '<td class="operator">'
+                        + '<button class="operator-btn" onclick="deleteReport(this)">删除</button></td>'
                         + '<td class="file-name" onclick="downloadReport(this)">' + report.fileName + '</td>'
                         + '<td class="state">' + report.state + '</td>'
                         + '<td class="create-user email">' + report.createUser + '</td>'
-                        + '<td class="create-time">' + report.createTime + '</td>'
+                        + '<td class="create-time">' + transformUTC2LocalTime(report.createTime) + '</td>'
                     + '</tr>';
     }
 
@@ -90,4 +93,25 @@ function generateReport(){
  */
 function refreshReportTable(){
     loadLessonReport();
+}
+
+/**
+ * 删除报告
+ * 
+ * @param {当前操作的报告} item 
+ */
+function deleteReport(item){
+    var reportCode = item.parentNode.parentNode.id;
+    deleteReportProxy(reportCode, handleDeleteReport);
+}
+
+/**
+ * 处理删除报告结果
+ * 
+ * @param {删除处理结果} result 
+ */
+function handleDeleteReport(result){
+    if (result.errorCode == 'OPERATE_SUCCESS') {
+        refreshReportTable();
+    }
 }
