@@ -68,6 +68,10 @@
                 <input id="add-lesson-dialog-name-id" class="float-left" type="text">
             </div>
             <div class="dialog-item clearfix">
+                <div class="atttribute-name float-left">指导老师:</div>
+                <input id="add-lesson-dialog-director-id" class="float-left" type="text" placeholder="电子邮箱">
+            </div>
+            <div class="dialog-item clearfix">
                 <button class="lesson-mgmt-button float-right" onclick="cancelAddLesson()">取消</button>
                 <button class="lesson-mgmt-button float-right" onclick="confirmAddLesson()">确定</button>
             </div>
@@ -162,9 +166,12 @@
             <div class="dialog-title">
                 增加课时
             </div>
+            <div class="dialog-item">
+                <label>学员姓名:</label> <label id="increase-less-num-student-name-id"></label>
+            </div>
             <div class="dialog-item clearfix">
                 <div class="atttribute-name float-left">加课数量:</div>
-                <input id="increase-less-num-dialog-lesson-num-id" class="float-left" type="number">
+                <input id="increase-less-num-dialog-lesson-num-id" class="float-left" type="number" min="1">
             </div>
             <div class="dialog-item clearfix">
                 <button class="lesson-mgmt-button float-right" onclick="cancelIncreaseLessNum()">取消</button>
@@ -177,13 +184,34 @@
             <div class="dialog-title">
                 扣减课时
             </div>
+            <div class="dialog-item">
+                <label>学员姓名:</label> <label id="decrease-less-num-student-name-id"></label>
+            </div>
             <div class="dialog-item clearfix">
                 <div class="atttribute-name float-left">减课数量:</div>
-                <input id="decrease-less-num-dialog-lesson-num-id" class="float-left" type="number">
+                <input id="decrease-less-num-dialog-lesson-num-id" class="float-left" type="number" min="1" value="1">
             </div>
             <div class="dialog-item clearfix">
                 <button class="lesson-mgmt-button float-right" onclick="cancelDecreaseLessNum()">取消</button>
                 <button class="lesson-mgmt-button float-right" onclick="confirmDecreaseLessNum()">确定</button>
+            </div>
+        </div>
+
+        <!--删除学员提示对话框-->
+        <div id="delete-student-dialog-id" class="delete-student-dialog hidden">
+            <div class="dialog-title">
+                删除学员
+            </div>
+            <div class="dialog-item">
+                <label>学员姓名: </label> <label id="delete-student-name-id"></label>
+            </div>
+            <div class="warn">
+                操作提醒：学员的课时数据将一并清除. 请确定是否删除?
+            </div>
+
+            <div class="dialog-item clearfix">
+                <button class="lesson-mgmt-button float-right" onclick="cancelDeleteStudent()">取消</button>
+                <button class="lesson-mgmt-button float-right" onclick="confirmDeleteStudent()">确定</button>
             </div>
         </div>
     </div>

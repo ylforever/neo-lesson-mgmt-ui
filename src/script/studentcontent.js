@@ -40,11 +40,12 @@ function initStudentTable(result){
     var studentList = result.data.dataList;
     for(var i = 0; i < studentList.length; ++i){
         const student = studentList[i];
-        studentHtml += '<tr id="' + student.studentCode + '"' + ' class="lesson-tr"' + ' lesson-code="' 
-                        + student.lessonCode + '">'
+        studentHtml += '<tr id="' + student.studentCode + '"' + ' class="lesson-tr"' 
+                        + ' student-name="' + student.name + '"'
+                        + ' lesson-code="' + student.lessonCode + '">'
                         + '<td>' + (i+1) + '</td>'
                         + '<td class="operator-btns">'
-                        + '<button class="operator-btn" onclick="deleteStudent(this)">删除</button>'
+                        + '<button class="operator-btn" onclick="showDeleteStudentDialog(this)">删除</button>'
                         +' <button class="operator-btn" onclick="showIncreaseLessonNumDialog(this)">加课时</button>'
                         +' <button class="operator-btn" onclick="showDecreaseLessonNumDialog(this)">减课时</button></td>'
                         + '<td class="name">' + student.name + '</td>'
@@ -96,17 +97,40 @@ function confirmAddStudent(){
 }
 
 /**
- * 删除学员
+ * 显示删除学员提示对话框
+ * 
+ * @param {当前学员} item 
+ */
+function showDeleteStudentDialog(item){
+    var studentRow = item.parentNode.parentNode;
+    CURRENT_STUDENT_CODE = studentRow.id;
+    CURRENT_LESSON_CODE = studentRow.getAttribute("lesson-code");
+
+    // 设置学员姓名
+    var studentName = studentRow.getAttribute("student-name");
+    document.getElementById("delete-student-name-id").innerHTML = studentName;
+
+    document.getElementById("delete-student-dialog-id").classList.remove("hidden");
+}
+
+/**
+ * 确认删除学员
  * 
  * @param {删除按钮} item 
  */
-function deleteStudent(item){
-    var studentRow = item.parentNode.parentNode;
-    const studentCode = studentRow.id;
-    var lessonCode = studentRow.getAttribute("lesson-code");
+function confirmDeleteStudent(item){
+    deleteStudentProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE);
+    loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 
-    deleteStudentProxy(lessonCode, studentCode);
-    loadStudentOfSelectedLesson(lessonCode);
+    document.getElementById("delete-student-dialog-id").classList.add("hidden");
+}
+
+/**
+ * 取消删除学员
+ */
+function cancelDeleteStudent(){
+    CURRENT_STUDENT_CODE = '';
+    document.getElementById("delete-student-dialog-id").classList.add("hidden");
 }
 
 /**
@@ -117,6 +141,9 @@ function deleteStudent(item){
 function showIncreaseLessonNumDialog(item){
     var studentRow = item.parentNode.parentNode;    
     CURRENT_STUDENT_CODE = studentRow.id;
+
+    var studentName = studentRow.getAttribute("student-name");
+    document.getElementById("increase-less-num-student-name-id").innerHTML = studentName;
 
     var dialog = document.getElementById("increase-less-num-dialog-id");
     dialog.classList.remove("hidden");
@@ -149,6 +176,9 @@ function confirmIncreaseLessNum(){
 function showDecreaseLessonNumDialog(item){
     var studentRow = item.parentNode.parentNode;
     CURRENT_STUDENT_CODE = studentRow.id;
+
+    var studentName = studentRow.getAttribute("student-name");
+    document.getElementById("decrease-less-num-student-name-id").innerHTML = studentName;
 
     var dialog = document.getElementById("decrease-less-num-dialog-id");
     dialog.classList.remove("hidden");

@@ -1,5 +1,5 @@
 @import "reset.css";
-@import "//at.alicdn.com/t/c/font_4764958_c4z9c8jb7m5.css";
+@import "//at.alicdn.com/t/c/font_4764958_v0wu3412uh.css";
 
 /*公共样式*/
 .float-left{
@@ -21,7 +21,7 @@ button{
 
 .lesson-mgmt-button{
     width: 70px;
-    background-color: #37ad96ff;
+    background-color: #40d0edff;
     color: white;
     border-radius: 3px;
 }
@@ -75,7 +75,7 @@ button{
 }
 
 .lesson-tr button{
-    background-color: #37ad96ff;
+    background-color: #40d0edff;
     color: white;
 }
 

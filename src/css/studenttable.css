@@ -106,7 +106,7 @@
 /*添加课时对话框样式设置开始*/
 .container .increase-less-num-dialog{
     width: 300px;
-    height: 115px;
+    height: 160px;
     border: 1px solid;
     background-color: #EFEFEF;
     position: fixed;
@@ -115,3 +115,20 @@
 }
 
 /*添加课时对话框样式设置结束*/
+
+/*删除学员对话框样式设置开始*/
+.container .delete-student-dialog{
+    width: 300px;
+    height: 180px;
+    border: 1px solid;
+    background-color: #EFEFEF;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+}
+
+.container .delete-student-dialog .warn{
+    padding-left: 5px;
+}
+
+/*删除学员对话框样式设置结束*/

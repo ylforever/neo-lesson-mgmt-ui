@@ -53,3 +53,31 @@ function logout(){
     localStorage.removeItem("jwt-token");
     window.location.href = "./login.html";
 }
+
+function showDisclaimerDoticesDialog(){
+    document.getElementById("disclaimer_notices_id").classList.remove("hidden");
+}
+
+function confirmDisclaimerDotices(){
+    document.getElementById("disclaimer_notices_id").classList.add("hidden");
+}
+
+/**
+ * 点击同意免责条款复选框处理函数
+ * 
+ * @param {同意免责条款复选框} item 
+ */
+function clickApproveCheckbox(item) {
+    var loginBtn = document.getElementById("login-btn-id");
+
+    // 选中
+    if (item.checked) {
+        loginBtn.disabled = false;
+        loginBtn.style.cursor = "pointer";
+        loginBtn.style.color = "black";
+    } else {
+        loginBtn.disabled = true;
+        loginBtn.style.cursor = "default";
+        loginBtn.style.color = "rgb(197, 191, 191)";
+    }
+}

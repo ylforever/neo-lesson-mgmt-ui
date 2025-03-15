@@ -33,8 +33,8 @@ function initLessonList(result){
                             + '<td class="operator">'
                             + '<button class="operator-btn" onclick="showDeleteLessonDialog(this)">删除</button></td>'
                             + '<td class="lesson" onclick="clickLessonName(this)">' + lesson.name + '</td>'
-                            + '<td class="total-surplus-lesson-num">' + 0 + '</td>'
-                            + '<td class="teacher email">' + 'yzy4101@163.com' + '</td>'
+                            + '<td class="total-surplus-lesson-num">' + lesson.totalLessonNum + '</td>'
+                            + '<td class="director email">' + lesson.director + '</td>'
                             + '<td class="create-user email">' + lesson.createUser + '</td>'
                             + '<td class="create-time">' + transformUTC2LocalTime(lesson.createTime) + '</td>'
                         + '</tr>';
@@ -103,8 +103,15 @@ function cancelAddLesson(){
  */
 function confirmAddLesson(){
     var lessonName = document.getElementById("add-lesson-dialog-name-id").value;
+    var director = document.getElementById("add-lesson-dialog-director-id").value;
+    if (!isEmail(director)) {
+        alert("请输入有效的电子邮箱地址");
+        return;
+    }
+
     var lesson = {
-        "name": lessonName
+        "name": lessonName,
+        "director": director
     }
 
     insertLessonProxy(lesson, addLessonCallbackFun);

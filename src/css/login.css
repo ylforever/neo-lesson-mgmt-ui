@@ -9,7 +9,7 @@ body{
 .container{
     width: 300px;
     height: 250px;
-    background-color: #008c8c;
+    background-color: rgba(255, 255, 255, 0.662);
     margin: 0 auto;
     margin-top: 10%;
     padding-top: 1px;
@@ -27,10 +27,10 @@ body{
 }
 
 .container .title{
-    background-color:blue;
     height: 30px;
     text-indent: 0.7em;
     line-height: 30px;
+    border-bottom: 1px solid;
 }
 
 .container .item input{
@@ -42,7 +42,9 @@ body{
 .container .login-btn button{
     width: 100%;
     height: 100%;
-    background-color:#97D9A1;
+    background-color:#40d0edff;
+    cursor: default;
+    color: rgb(197, 191, 191);
 }
 
 .container .verfiy-code{
@@ -55,7 +57,7 @@ body{
     right: 0;
     height: 30px;
     box-sizing: border-box;
-    color: blue;
+    color: rgb(68, 68, 225);
 }
 
 .container .declare input{
@@ -66,7 +68,52 @@ body{
 
 .container .declare .readme{
     font-size: 13px;
-    color: blue;
     margin-left: 5px;
     vertical-align: middle;
 }
+
+.container .declare .readme a{
+    color: rgb(42, 42, 187);
+    font-size: 13px;
+    margin-left: 0;
+    margin-right: 0;
+    cursor: pointer;
+}
+
+/*免责声明样式设置开始*/
+.disclaimer_notices {
+    height: 500px;
+    width: 500px;
+    position: fixed;
+    top: 15%;
+    left: 30%;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: #f1f0f5ff;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.disclaimer_notices .content textarea{
+    height: 450px;
+    width: 450px;
+    overflow-y: scroll;
+    text-align: left;
+    background-color: #ffffffff;
+}
+
+.disclaimer_notices .confirm-disclaimer-notices {
+    height: 50px;
+    width: 100%;
+}
+
+.disclaimer_notices .confirm-disclaimer-notices button{
+    font-size: 16px;
+    background-color: #40d0edff;
+    width: 200px;
+    height: 25px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/*免责声明样式设置结束*/
