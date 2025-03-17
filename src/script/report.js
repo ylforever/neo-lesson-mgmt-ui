@@ -76,6 +76,8 @@ function handleDownloadReport(xhr) {
             a.download = str;
             a.click();
             window.URL.revokeObjectURL(url);
+        } else if (xhr.status == 401) {
+            window.location.href = "./login.html";
         }
     }
 }
@@ -84,7 +86,7 @@ function handleDownloadReport(xhr) {
  * 生成报告
  */
 function generateReport(){
-    generateReportProxy();
+    generateReportProxy(defaultHandleFun);
     loadLessonReport();
 }
 

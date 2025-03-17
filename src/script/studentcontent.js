@@ -89,7 +89,7 @@ function confirmAddStudent(){
         "email": email
     }
 
-    insertStudentProxy(student);
+    insertStudentProxy(student, defaultHandleFun);
     loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 
     // 关闭对话框
@@ -119,7 +119,7 @@ function showDeleteStudentDialog(item){
  * @param {删除按钮} item 
  */
 function confirmDeleteStudent(item){
-    deleteStudentProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE);
+    deleteStudentProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE, defaultHandleFun);
     loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 
     document.getElementById("delete-student-dialog-id").classList.add("hidden");
@@ -162,7 +162,7 @@ function cancelIncreaseLessNum(){
 function confirmIncreaseLessNum(){
     var incrLessonNum = document.getElementById("increase-less-num-dialog-lesson-num-id").value;
 
-    increaseLessonNumProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE, incrLessonNum);
+    increaseLessonNumProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE, incrLessonNum, defaultHandleFun);
     loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 
     document.getElementById("increase-less-num-dialog-id").classList.add("hidden");
@@ -197,7 +197,7 @@ function cancelDecreaseLessNum(){
 function confirmDecreaseLessNum(){
     var incrLessonNum = document.getElementById("decrease-less-num-dialog-lesson-num-id").value;
 
-    decreaseLessonNumProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE, incrLessonNum);
+    decreaseLessonNumProxy(CURRENT_LESSON_CODE, CURRENT_STUDENT_CODE, incrLessonNum, defaultHandleFun);
     loadStudentOfSelectedLesson(CURRENT_LESSON_CODE);
 
     document.getElementById("decrease-less-num-dialog-id").classList.add("hidden");

@@ -64,7 +64,7 @@ function showDeleteLessonDialog(item){
  */
 function confirmDeleteLesson(){
     // 删除课程
-    deleteLessonProxy(CURRENT_LESSON_CODE);
+    deleteLessonProxy(CURRENT_LESSON_CODE, defaultHandleFun);
 
     // 重新加载课程树
     loadLessonList();

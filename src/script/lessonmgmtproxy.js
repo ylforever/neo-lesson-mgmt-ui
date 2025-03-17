@@ -16,9 +16,25 @@ var SERVICE_ADDRESS = "http://localhost";
  */
 function handleResult(xhr, handlerFun){
     return function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            // 未授权或者token过期，跳转到登录页面
+            if (xhr.status == 401) {
+                window.location.href = "./login.html";
+            }
+        }
+
         var result = JSON.parse(xhr.responseText);
         handlerFun(result);
     }
+}
+
+/**
+ * 默认回调方法. 此方法不对接口返回结果做任何处理, 用于绑定处理401的情况
+ * 
+ * @param {接口返回结果} result 
+ */
+function defaultHandleFun(result){
+
 }
 
 /**
@@ -66,9 +82,10 @@ function queryStudentByPageProxy(handlerFun, pageVo, lessonCode) {
  * 
  * @param {课程编码} lessonCode 
  */
-function deleteLessonProxy(lessonCode){
+function deleteLessonProxy(lessonCode, handlerFun){
     var xhr = new XMLHttpRequest();
     var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/lesson/delete-lesson/" + lessonCode;
+    xhr.onload = handleResult(xhr, handlerFun);
 
     xhr.open("DELETE", requestPath, false);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -84,9 +101,10 @@ function deleteLessonProxy(lessonCode){
  * 
  * @param {学员数据} student
  */
-function insertStudentProxy(student){
+function insertStudentProxy(student, handlerFun){
     var xhr = new XMLHttpRequest();
     var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/student/insert-student";
+    xhr.onload = handleResult(xhr, handlerFun);
 
     xhr.open("POST", requestPath, false);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -104,9 +122,10 @@ function insertStudentProxy(student){
  * @param {课程编码} lessonCode 
  * @param {学员编码} studentCode 
  */
-function deleteStudentProxy(lessonCode, studentCode){
+function deleteStudentProxy(lessonCode, studentCode, handlerFun){
     var xhr = new XMLHttpRequest();
     var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/student/delete-student/" + lessonCode + "/" + studentCode;
+    xhr.onload = handleResult(xhr, handlerFun);
 
     xhr.open("DELETE", requestPath, false);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -124,10 +143,11 @@ function deleteStudentProxy(lessonCode, studentCode){
  * @param {学员编码} studentCode 
  * @param {课时数量} lessonNum 
  */
-function increaseLessonNumProxy(lessonCode, studentCode, lessonNum){
+function increaseLessonNumProxy(lessonCode, studentCode, lessonNum, handlerFun){
     var xhr = new XMLHttpRequest();
     var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/student/increase-lesson-num/" + lessonCode 
                     + "/" + studentCode + "/" + lessonNum;
+    xhr.onload = handleResult(xhr, handlerFun);
 
     xhr.open("POST", requestPath, false);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -145,10 +165,11 @@ function increaseLessonNumProxy(lessonCode, studentCode, lessonNum){
  * @param {学员编码} studentCode 
  * @param {课时数量} lessonNum 
  */
-function decreaseLessonNumProxy(lessonCode, studentCode, lessonNum){
+function decreaseLessonNumProxy(lessonCode, studentCode, lessonNum, handlerFun){
     var xhr = new XMLHttpRequest();
     var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/student/decrease-lesson-num/" + lessonCode 
                     + "/" + studentCode + "/" + lessonNum;
+    xhr.onload = handleResult(xhr, handlerFun);
 
     xhr.open("POST", requestPath, false);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -257,9 +278,10 @@ function downloadReportProxy(reportCode, handleDownloadReport) {
 /**
  * 生成报告代理接口
  */
-function generateReportProxy(){
+function generateReportProxy(handlerFun){
     var xhr = new XMLHttpRequest();
     var requestPath = SERVICE_ADDRESS + "/neo-lesson-mgmt/v1/report/generate-report";
+    xhr.onload = handleResult(xhr, handlerFun);
 
     xhr.open("POST", requestPath, false);
     xhr.setRequestHeader('Content-Type', 'application/json');
