@@ -82,6 +82,11 @@ function confirmAddStudent(){
     var surplusLessonNum = document.getElementById("add-student-dialog-surplus-lesson-num-id").value;
     var email = document.getElementById("add-student-dialog-email-id").value;
 
+    if (!isEmail(email)) {
+        alert("请输入有效的电子邮箱地址");
+        return;
+    }
+
     var student = {
         "lessonCode": CURRENT_LESSON_CODE,
         "name": name,

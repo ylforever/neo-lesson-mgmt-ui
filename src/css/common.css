@@ -1,5 +1,5 @@
 @import "reset.css";
-@import "//at.alicdn.com/t/c/font_4764958_v0wu3412uh.css";
+@import "//at.alicdn.com/t/c/font_4764958_0n19od0zjs6a.css";
 
 /*公共样式*/
 .float-left{
@@ -31,6 +31,11 @@ button{
     text-align: center;
 }
 
+.icon-bitianxinghao{
+    font-size: 8px;
+    color: red;
+}
+
 /*弹出对话框公共样式设置开始*/
 .dialog-item{
     height: 25px;
@@ -41,6 +46,7 @@ button{
 .dialog-item .atttribute-name{
     width: 80px;
     height: 25px;
+    line-height: 25px;
 }
 
 .dialog-item input{

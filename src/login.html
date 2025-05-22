@@ -11,7 +11,7 @@
     <script src="./script/login.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div id="login-window-id" class="container">
         <div class="title">
             登录框
         </div>
@@ -27,7 +27,7 @@
                 <input id="approve-disclaimer-notices-checkbox-id" type="checkbox" onclick="clickApproveCheckbox(this)">
             </div>
             <div class="float-left">
-                <label class="readme">我同意
+                <label class="readme">我已阅读并同意
                     <a onclick="showDisclaimerDoticesDialog()">《免责协议》</a>
                 </label>
             </div>
@@ -86,7 +86,7 @@
  
         </div>
         <div class="confirm-disclaimer-notices">
-            <button onclick="confirmDisclaimerDotices()">我已阅读</button>
+            <button onclick="confirmDisclaimerDotices()">我已阅读并同意</button>
         </div>
     </div>
 </body>

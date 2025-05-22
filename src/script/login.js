@@ -54,11 +54,19 @@ function logout(){
     window.location.href = "./login.html";
 }
 
+/**
+ * 显示免责对话框
+ */
 function showDisclaimerDoticesDialog(){
+    document.getElementById("login-window-id").classList.add("hidden");
     document.getElementById("disclaimer_notices_id").classList.remove("hidden");
 }
 
+/**
+ * 确认免责条款
+ */
 function confirmDisclaimerDotices(){
+    document.getElementById("login-window-id").classList.remove("hidden");
     document.getElementById("disclaimer_notices_id").classList.add("hidden");
 }
 
